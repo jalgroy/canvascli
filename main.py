@@ -11,7 +11,7 @@ from inspect import getmembers, isclass
 import json
 import os
 
-from commands.courses import Courses
+from commands.courses import courses
 from commands.assignments import assignments
 from commands.announcements import announcements 
 
@@ -32,8 +32,7 @@ if __name__ == '__main__':
     canvas = Canvas(config['api_url'], config['api_key'])
 
     if(arguments["courses"]):
-        courses = Courses(canvas)
-        courses.run()
+        courses(canvas)
     
     if arguments['assignments']:
         assignments(canvas, arguments['<course>'])
