@@ -7,10 +7,17 @@ def get_course(canvas, course):
     if not all_courses:
         raise Exception('invalid course')
 
-    if len(all_courses) > 1:
-        raise Exception('conflicting course names')
+    choice = 0
 
-    return all_courses[0]    
+    if len(all_courses) > 1:
+        print('conflicting courses:')
+        for i in range(0, len(all_courses)):
+            print(f'\t[{i}]: {all_courses[i].name}')
+        choice = input('choose by index: ')
+        if not choice.isdigit() or not int(choice) in range(0, len(all_courses)):
+            raise Exception('illegal index')
+
+    return all_courses[int(choice)]    
 
 def print_title(message):
     print(f'\033[92;1m{message}\033[0m')
