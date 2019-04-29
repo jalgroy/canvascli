@@ -2,8 +2,11 @@
 Usage:
     canvascli.py courses
     canvascli.py assignments <course>
-    canvascli.py announcements <course>
+    canvascli.py announcements <course> [--last=<n>]
     canvascli.py files <course>
+
+Options:
+    --last=<n>  Get the last n items [default: 100]
 '''
 
 from docopt import docopt
@@ -40,7 +43,7 @@ if __name__ == '__main__':
         assignments(canvas, arguments['<course>'])
 
     if arguments['announcements']:
-        announcements(canvas, arguments['<course>'])
+        announcements(canvas, arguments["<course>"], arguments["--last"])
 
     if arguments['files']:
         files(canvas, arguments['<course>'], config['files_path'])

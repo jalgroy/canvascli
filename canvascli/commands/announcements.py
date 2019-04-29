@@ -2,7 +2,7 @@ from utils import *
 import datetime
 import re
 
-def announcements(canvas, course):
+def announcements(canvas, course, lastN):
     course = get_course(canvas, course)
     context_code = "course_" + str(course.id)
     delta = datetime.timedelta(10000)
@@ -11,7 +11,7 @@ def announcements(canvas, course):
 
     announcements = canvas.get_announcements(context_codes = context_code, start_date = start, end_date = end)
 
-    for announcement in list(announcements)[::-1]:
+    for announcement in list(announcements)[0:int(lastN)][::-1]:
         date = re.sub('T.*','',announcement.posted_at)
         print_title("[{}] {}".format(date, announcement.title))
         print_html(announcement.message)
