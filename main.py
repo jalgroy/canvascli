@@ -3,6 +3,7 @@ Usage:
     canvascli.py courses
     canvascli.py assignments <course>
     canvascli.py announcements <course>
+    canvascli.py files <course>
 '''
 
 from docopt import docopt
@@ -14,6 +15,7 @@ import os
 from commands.courses import Courses
 from commands.assignments import assignments
 from commands.announcements import announcements 
+from commands.files import files
 
 def readConfig():
     if("HOME" in os.environ):
@@ -40,3 +42,6 @@ if __name__ == '__main__':
 
     if arguments['announcements']:
         announcements(canvas, arguments['<course>'])
+
+    if arguments['files']:
+        files(canvas, arguments['<course>'], config['files_path'])
