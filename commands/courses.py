@@ -3,12 +3,10 @@
 
 from canvasapi import Canvas
 
-
-
 class Courses(object):
-    def __init__(self, api_url, api_key):
-        self.canvas = Canvas(api_url, api_key)
+    def __init__(self, canvas):
+        self.canvas = canvas
 
-    def run():
-        for course in canvas.get_courses():
+    def run(self):
+        for course in self.canvas.get_courses():
             print(course.course_code + ": " + course.name)
