@@ -15,7 +15,7 @@ from commands.courses import Courses
 from commands.assignments import assignments
 
 def readConfig():
-    config_home = os.environ["HOME"] + "/.config"
+    config_home = os.environ['HOME'] + "/.config"
     with open(config_home + '/canvascli/config.json') as json_file:
         data = json.load(json_file)
         return data
@@ -23,10 +23,11 @@ def readConfig():
 if __name__ == '__main__':
     arguments = docopt(__doc__)
     config = readConfig()
-    canvas = Canvas(config["api_url"], config["api_key"])
+    canvas = Canvas(config['api_url'], config['api_key'])
 
-    assignments(canvas, 'INF237') 
-
-    if(arguments["courses"]):
+    if arguments['courses']:
         courses = Courses(canvas)
         courses.run()
+    
+    if arguments['assignments']:
+        assignments(canvas, arguments['<course>'])
