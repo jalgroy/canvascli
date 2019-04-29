@@ -15,7 +15,12 @@ from commands.courses import Courses
 from commands.assignments import assignments
 
 def readConfig():
-    config_home = os.environ['HOME'] + "/.config"
+    if("HOME" in os.environ):
+        config_home = os.environ["HOME"] + "/.config"
+    elif("%APPDATA%" in os.environ):
+        config_home = os.environ["%APPDATA%"]
+    else:
+        config_home = "./"
     with open(config_home + '/canvascli/config.json') as json_file:
         data = json.load(json_file)
         return data
@@ -25,7 +30,7 @@ if __name__ == '__main__':
     config = readConfig()
     canvas = Canvas(config['api_url'], config['api_key'])
 
-    if arguments['courses']:
+    if(arguments["courses"]):
         courses = Courses(canvas)
         courses.run()
     
