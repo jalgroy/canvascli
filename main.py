@@ -10,9 +10,10 @@ from canvasapi import Canvas
 from inspect import getmembers, isclass
 import json
 import os
-from commands.courses import Courses
 
+from commands.courses import Courses
 from commands.assignments import assignments
+from commands.announcements import announcements 
 
 def readConfig():
     if("HOME" in os.environ):
@@ -36,3 +37,6 @@ if __name__ == '__main__':
     
     if arguments['assignments']:
         assignments(canvas, arguments['<course>'])
+
+    if arguments['announcements']:
+        announcements(canvas, arguments['<course>'])

@@ -1,2 +1,3 @@
 docopt
 canvasapi
+html2text
