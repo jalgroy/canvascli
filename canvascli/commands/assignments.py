@@ -1,4 +1,4 @@
-from utils import * 
+from utils import (print_title, print_info, print_url, get_course) 
 
 def assignments(canvas, course):
     course = get_course(canvas, course)

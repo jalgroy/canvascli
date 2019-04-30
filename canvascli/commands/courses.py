@@ -1,8 +1,4 @@
-#!/usr/bin/env/python3
-# -*- coding: utf-8 -*-
-
-from canvasapi import Canvas
-from utils import * 
+from utils import (print_title, print_info) 
 
 def courses(canvas):
     rows = [[course.course_code, course.name]

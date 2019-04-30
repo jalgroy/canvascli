@@ -1,4 +1,4 @@
-from utils import *
+from utils import (get_course) 
 
 import urllib.request
 import os

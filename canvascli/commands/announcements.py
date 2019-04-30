@@ -1,4 +1,4 @@
-from utils import * 
+from utils import (get_course, print_title, print_html, print_url) 
 import datetime
 import re
 
