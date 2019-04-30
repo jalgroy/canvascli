@@ -15,10 +15,7 @@ from docopt import docopt
 from canvasapi import Canvas
 from inspect import getmembers, isclass
 
-from commands.courses import courses
-from commands.assignments import assignments
-from commands.announcements import announcements 
-from commands.files import files
+from commands import courses, announcements, files, assignments 
 
 from utils import (get_config_path, write_to_config, read_config, print_title, print_info)
 
@@ -42,7 +39,7 @@ def check_config(config):
 
     return valid 
 
-def start():
+def main():
     arguments = docopt(__doc__)
 
     if arguments['set-output-directory']:
@@ -77,4 +74,4 @@ def start():
 
 
 if __name__ == '__main__':
-    start()
+    main()
