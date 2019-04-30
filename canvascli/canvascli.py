@@ -4,7 +4,6 @@ Usage:
     canvascli.py assignments <course>
     canvascli.py announcements <course> [--last=<n>]
     canvascli.py files <course>
-
     canvascli.py set-output-directory <directory>
     canvascli.py set-api-key <key>
     canvascli.py set-canvas-url <url>
