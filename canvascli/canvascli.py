@@ -5,6 +5,10 @@ Usage:
     canvascli.py announcements <course> [--last=<n>]
     canvascli.py files <course>
 
+    canvascli.py set-output-directory <directory>
+    canvascli.py set-api-key <key>
+    canvascli.py set-canvas-url <url>
+
 Options:
     --last=<n>  Get the last n items [default: 100]
 '''
@@ -20,7 +24,7 @@ from commands.assignments import assignments
 from commands.announcements import announcements 
 from commands.files import files
 
-def readConfig():
+def read_config():
     if("HOME" in os.environ):
         config_home = os.environ["HOME"] + "/.config"
     elif("%APPDATA%" in os.environ):
@@ -31,12 +35,35 @@ def readConfig():
         data = json.load(json_file)
         return data
 
-if __name__ == '__main__':
+def check_config(config):
+    valid_config = config['api_url'] and config['api_key'] and config['files_path']
+    if not config['api_url']:
+        print('please specify your canvas url')
+    if not config['api_key']:
+        print('please specify your canvas api key')
+    if not config['files_path']:
+        print('please specify your output directory')
+    return valid_config
+
+def start():
     arguments = docopt(__doc__)
-    config = readConfig()
+
+    if arguments['set-output-directory']:
+        pass # todo: write to config.json
+
+    if arguments['set-api-key']:
+        pass # todo: write to config.json
+    
+    if arguments['set-canvas-url']:
+        pass # todo: write to config.json
+
+    config = read_config()
+    if not check_config(config):
+        return
+
     canvas = Canvas(config['api_url'], config['api_key'])
 
-    if(arguments["courses"]):
+    if arguments["courses"]:
         courses(canvas)
     
     if arguments['assignments']:
@@ -47,3 +74,7 @@ if __name__ == '__main__':
 
     if arguments['files']:
         files(canvas, arguments['<course>'], config['files_path'])
+
+
+if __name__ == '__main__':
+    start()
