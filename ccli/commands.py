@@ -1,4 +1,4 @@
-from utils import (get_course, print_info, print_title, print_html, print_url) 
+from ccli.utils import (get_course, print_info, print_title, print_html, print_url) 
 import urllib.request
 import datetime
 import re
@@ -7,11 +7,13 @@ import os
 def courses(canvas):
     rows = [[course.course_code, course.name]
             for course in canvas.get_courses()]
+    print()
     widths = [max(map(len, col)) for col in zip(*rows)]
     header = ["Course code", "Course title"]
     print_title("  ".join((val.ljust(width) for val, width in zip(header, widths))))
     for row in rows[1:]:
         print_info("  ".join((val.ljust(width) for val, width in zip(row, widths))))
+    print()
 
 def announcements(canvas, course, lastN):
     course = get_course(canvas, course)
@@ -47,7 +49,6 @@ def files(canvas, course, output_path):
 def assignments(canvas, course):
     course = get_course(canvas, course)
     assignments = course.get_assignments()
-
     for assignment in assignments:
         print_title(assignment.name)
         # print_html(assignment.attributes['description'])

@@ -1,26 +1,21 @@
-from setuptools import find_packages, setup
-import pathlib
-
-here = pathlib.Path(__file__).parent
-readme = (here / 'README.md').read_text()
-
-print(find_packages())
-
+from distutils.core import setup
 setup(
-    name='canvas-cli',
-    version='1.0.5',
-    description='CLI for the Canvas LMS',
-    long_description=readme,
-    long_description_content_type='text/markdown',
-    url='https://github.com/jalgroy/canvascli',
-    author='Joakim Algrøy and Petter Daae',
-    license='MIT',
-    packages=['canvascli'],
-    include_package_data=True,
-    install_requires=['docopt', 'html2text', 'canvasapi'],
-    entry_points={
-        'console_scripts': [
-            'canvascli=canvascli.__main__:main',
-        ]
-    },
+  name = 'ccli',         # How you named your package folder (MyLib)
+  packages = ['ccli'],   # Chose the same as "name"
+  version = '0.0.5',      # Start with a small number and increase it with every change you make
+  license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
+  description = 'CLI for the Canvas LMS',   # Give a short description about your library
+  author = 'Joakim Algrøy and Petter Daae',                   # Type in your name
+  author_email = 'petter.daae@gmail.com',
+  url = 'https://github.com/jalgroy/canvascli',   # Provide either the link to your github or to your website
+  install_requires=[            # I get to this in a second
+    'docopt',
+    'canvasapi',
+    'html2text'
+  ],
+  entry_points={
+      'console_scripts': [
+          'ccli = ccli.__main__:main'
+      ]
+  }
 )
