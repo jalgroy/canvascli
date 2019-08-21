@@ -34,8 +34,10 @@ def print_html(html):
 def print_url(message):
     print(f'\033[97;4m{message}\033[0m')
 
-def check_config(config):
-    config_keys = ['api_url', 'api_key', 'files_path']
+def check_config(config, check_files=False):
+    config_keys = ['api_url', 'api_key']
+    if check_files:
+        config_keys.append('files_path')
     config_keys_exist = all([key in config for key in config_keys])
     config_vals_exist = config_keys_exist and all([config[key] for key in config_keys])
     if config_vals_exist:

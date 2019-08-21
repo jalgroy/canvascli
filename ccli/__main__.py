@@ -51,6 +51,8 @@ def main(args=None):
         announcements(canvas, arguments["<course>"], arguments["--last"])
 
     if arguments['files']:
+        if not check_config(config, check_files=True):
+            sys.exit(1)
         files(canvas, arguments['<course>'], config['files_path'])
 
 if __name__ == '__main__':
